@@ -1,4 +1,4 @@
-global.PDFExpoter = require('../lib/index').PDFExpoter
+global.exporter = require('../lib/index').default
 global.jade = require('../lib/renderer').jade
 global.Bluebird = require('bluebird')
 global.assert = require 'power-assert'
