@@ -7,15 +7,15 @@ template2pdf
 Installation
 ----------------------
 
-  npm install template2pdf
+    npm install template2pdf
 
 Basic usage
 --------------------------
 
+```js
 var jade = require('template2pdf').jade;
 var exporter = require('template2pdf').default;
 
-```js
 exporter(jade({ /* jade options */ })).render('views/content.jade', { name: 'jade' }).then(function(result) {
   result.toFile('/tmp/content.pdf', function() {
     //do something
@@ -26,13 +26,13 @@ exporter(jade({ /* jade options */ })).render('views/content.jade', { name: 'jad
 Javascript & Stylesheet
 --------------------------
 
+```js
 var jade = require('template2pdf').jade;
 var exporter = require('template2pdf').default;
 
-```js
 exporter(jade())
-  .stylesheet()
-  .javascript()
+  .stylesheet('./style.css')
+  .javascript('./js/main.js')
   .layout({
     format: 'A4',
     orientation: 'portrait'
