@@ -26,7 +26,9 @@
     "mocha": "^2.3.2",
     "mocha-lcov-reporter": "0.0.2",
     "mocha-multi": "^0.7.1",
-    "power-assert": "^1.0.1"
+    "power-assert": "^1.0.1",
+    "coveralls": "~2.11",
+    "coveralls": "./node_modules/gulp/bin/gulp.js --require=coffee-script/register coveralls"
   },
   "dependencies": {
     "bluebird": "^2.10.0",
