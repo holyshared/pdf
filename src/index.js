@@ -1,15 +1,6 @@
 import Bluebird from 'bluebird';
 import pdf from 'phantom-html2pdf';
 
-export class Renderer {
-  constructor(adapter) {
-    this.adapter = adapter;
-  }
-  render(template, values) {
-    return this.adapter.render(template, values);
-  }
-}
-
 export class PDFExpoter {
   constructor(renderer) {
     this.renderer = renderer;

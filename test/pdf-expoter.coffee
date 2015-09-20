@@ -1,8 +1,7 @@
 describe 'PDFExpoter', ->
   describe 'render()', ->
     before ->
-      @adapter = new JadeAdapter
-      @renderer = new Renderer @adapter
+      @renderer = new JadeRenderer
       @exporter = new PDFExpoter @renderer
     it 'returns render content', ->
       @timeout 3000

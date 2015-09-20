@@ -2,7 +2,7 @@ import jade from 'jade';
 import Bluebird from 'bluebird';
 import _ from 'lodash';
 
-export class JadeAdapter {
+export class JadeRenderer {
   constructor(options = {}) {
     this.options = options;
   }
