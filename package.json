@@ -1,7 +1,7 @@
 {
   "name": "template2pdf",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "PDF conversion module using the template engine",
   "main": "lib/index.js",
   "scripts": {
     "test": "multi='spec=- mocha-lcov-reporter=lcov-report.lcov' node_modules/.bin/mocha test",
