@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/holyshared/pdf.git"
+    "url": "git+https://github.com/holyshared/template2pdf.git"
   },
   "author": "Noritaka Horio <holy.shared.design@gmail.com>",
   "license": "MIT",
