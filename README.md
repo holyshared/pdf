@@ -31,8 +31,8 @@ var jade = require('template2pdf').jade;
 var exporter = require('template2pdf').default;
 
 exporter(jade())
-  .stylesheet()
-  .javascript()
+  .stylesheet('./style.css')
+  .javascript('./js/main.js')
   .layout({
     format: 'A4',
     orientation: 'portrait'
