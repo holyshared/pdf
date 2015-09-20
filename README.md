@@ -15,7 +15,7 @@ var jade = require('template2pdf').jade;
 var exporter = require('template2pdf').default;
 
 ```js
-exporter(jade()).render('views/content.jade', { name: 'jade' }).then(function(result) {
+exporter(jade({ /* jade options */ })).render('views/content.jade', { name: 'jade' }).then(function(result) {
   result.toFile('/tmp/content.pdf', function() {
     //do something
   });
