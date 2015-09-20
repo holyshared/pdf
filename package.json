@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "bluebird": "^2.10.0",
+    "jade": "^1.11.0",
+    "lodash": "^3.10.1",
     "phantom-html2pdf": "^1.0.2"
   },
   "config": {
