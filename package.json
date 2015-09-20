@@ -6,7 +6,8 @@
   "scripts": {
     "test": "multi='spec=- mocha-lcov-reporter=lcov-report.lcov' node_modules/.bin/mocha test",
     "build": "./node_modules/.bin/babel -d lib -s inline src",
-    "watch": "./node_modules/.bin/babel -d lib -s inline -w src"
+    "watch": "./node_modules/.bin/babel -d lib -s inline -w src",
+    "coveralls": "./node_modules/gulp/bin/gulp.js --require=coffee-script/register coveralls"
   },
   "repository": {
     "type": "git",
