@@ -1,6 +1,10 @@
-import jade from 'jade';
+import * as jadeRenderer from 'jade';
 import Bluebird from 'bluebird';
 import _ from 'lodash';
+
+export function jade(options = {}) {
+  return new JadeRenderer(options);
+}
 
 export class JadeRenderer {
   constructor(options = {}) {
@@ -10,7 +14,7 @@ export class JadeRenderer {
     return new Bluebird((resolve, reject) => {
       let locals = _.merge(this.options, values);
       try {
-        resolve( jade.renderFile(template, locals) );
+        resolve( jadeRenderer.renderFile(template, locals) );
       } catch (err) {
         reject(err);
       }

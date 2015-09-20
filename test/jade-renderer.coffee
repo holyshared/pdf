@@ -1,7 +1,7 @@
 describe 'JadeAdapter', ->
   describe 'render()', ->
     before ->
-      @renderer = new JadeRenderer
+      @renderer = jade()
     it 'returns render content', ->
       template = path.resolve(__dirname, 'fixtures/content.jade')
       @renderer.render(template, { title: 'jade' }).then (content) ->

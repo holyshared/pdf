@@ -1,8 +1,7 @@
 describe 'PDFExpoter', ->
   describe 'render()', ->
     before ->
-      @renderer = new JadeRenderer
-      @exporter = new PDFExpoter @renderer
+      @exporter = new PDFExpoter jade()
     it 'returns render content', ->
       @timeout 3000
       template = path.resolve(__dirname, 'fixtures/content.jade')
