@@ -1,0 +1,41 @@
+{
+  "name": "pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "multi='spec=- mocha-lcov-reporter=lcov-report.lcov' node_modules/.bin/mocha test",
+    "build": "./node_modules/.bin/babel -d lib -s inline src",
+    "watch": "./node_modules/.bin/babel -d lib -s inline -w src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holyshared/pdf.git"
+  },
+  "author": "Noritaka Horio <holy.shared.design@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/holyshared/pdf/issues"
+  },
+  "homepage": "https://github.com/holyshared/pdf#readme",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "blanket": "^1.1.7",
+    "coffee-script": "^1.10.0",
+    "eslint": "^1.5.0",
+    "mocha": "^2.3.2",
+    "mocha-lcov-reporter": "0.0.2",
+    "mocha-multi": "^0.7.1",
+    "power-assert": "^1.0.1"
+  },
+  "dependencies": {
+    "bluebird": "^2.10.0",
+    "phantom-html2pdf": "^1.0.2"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "/lib/",
+      "data-cover-never": "/node_modules/"
+    }
+  }
+}

@@ -1,0 +1,3 @@
+--require blanket
+--compilers coffee:coffee-script/register
+--reporter mocha-multi
