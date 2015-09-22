@@ -1,7 +1,5 @@
 gulp = require 'gulp'
-run = require 'gulp-run'
+coveralls = require 'gulp-coveralls'
 
 gulp.task 'coveralls', ->
-
-  gulp.src('./lcov-report.lcov')
-    .pipe(run('./node_modules/.bin/coveralls'));
+  gulp.src('./lcov-report.lcov').pipe(coveralls())
