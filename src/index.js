@@ -1,44 +1,69 @@
+/* @flow */
+
 import _ from 'lodash';
-import Bluebird from 'bluebird';
+import Promise from 'bluebird';
 import pdf from 'phantom-html2pdf';
 
-export default function exporter(renderer) {
+type PageSizeOptions = {
+  format?: string,
+  orientation?: string,
+  width?: string,
+  height?: string,
+  delay?: number
+}
+
+type Html2PDFOptions = {
+  js?: string,
+  css?: string,
+  deleteOnAction?: boolean,
+  pageSize?: PageSizeOptions,
+  html?: string
+}
+
+export default function exporter(renderer: Object): PDFExpoter {
   return new PDFExpoter(renderer);
 }
 
 export class PDFExpoter {
-  constructor(renderer) {
-    this.renderer = renderer;
+  _javascript: string;
+  _stylesheet: string;
+  _layout: PageSizeOptions;
+  _forceCleanup: boolean;
+  _renderer: Object;
+
+  constructor(renderer:Object) {
+    this._renderer = renderer;
     this._javascript = '';
     this._stylesheet = '';
     this._layout = {};
     this._forceCleanup = false;
   }
-  layout(layout = {}) {
+  // https://github.com/codemix/babel-plugin-typecheck/issues/2
+  layout(layout:Object = {}): PDFExpoter {
     this._layout = layout;
     return this;
   }
-  stylesheet(stylesheet) {
+  stylesheet(stylesheet: string): PDFExpoter {
     this._stylesheet = stylesheet;
     return this;
   }
-  javascript(js) {
+  javascript(js: string): PDFExpoter {
     this._javascript = js;
     return this;
   }
-  cleanup() {
+  cleanup(): PDFExpoter {
     this._forceCleanup = true;
     return this;
   }
-  render(template, values) {
-    return Bluebird.bind(this).then(() => {
-      return this.renderer.render(template, values);
+  render(template:string, values:Object): Promise {
+    return Promise.bind(this).then(() => {
+      return this._renderer.render(template, values);
     }).then((content) => {
       return this.renderPDF(content);
     });
   }
-  renderPDF(content) {
-    var opts = {
+  renderPDF(content: string): Promise {
+    var opts:Html2PDFOptions = {
       js: this._javascript,
       css: this._stylesheet,
       deleteOnAction: this._forceCleanup,
@@ -46,7 +71,7 @@ export class PDFExpoter {
       html: content
     };
 
-    return new Bluebird((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       pdf.convert(opts, (result) => {
         resolve(result);
       });
