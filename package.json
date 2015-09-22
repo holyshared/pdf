@@ -1,6 +1,6 @@
 {
   "name": "template2pdf",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "PDF conversion module using the template engine",
   "main": "lib/index.js",
   "scripts": {
