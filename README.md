@@ -27,19 +27,18 @@ Javascript & Stylesheet
 --------------------------
 
 ```js
-import jade from 'template2pdf-jade';
 import exporter from 'template2pdf';
+import jade from 'template2pdf-jade';
+import { resolve } from 'path';
 
 exporter(jade())
-  .stylesheet('./style.css')
-  .javascript('./js/main.js')
-  .layout({
-    format: 'A4',
-    orientation: 'portrait'
+  .stylesheet('style.css')
+  .javascript('main.js')
+  .render(resolve(__dirname, './report.jade'), {
+    title: 'jade-example',
+    content: 'Example content'
   })
-  .render('views/content.jade', { name: 'jade' }).then((result) => {
-    result.toFile('/tmp/content.pdf', () => {
-		//do something
-    });
+  .then((result) => {
+    result.toFile('./report.pdf');
   });
 ```
