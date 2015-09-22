@@ -38,6 +38,7 @@ export class PDFExpoter {
     this._layout = {};
     this._forceCleanup = false;
   }
+  // https://github.com/codemix/babel-plugin-typecheck/issues/2
   layout(layout:Object = {}): PDFExpoter {
     this._layout = layout;
     return this;
