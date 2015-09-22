@@ -5,13 +5,16 @@ describe 'ResultWrapper', ->
     @wrapper = new ResultWrapper @result
 
   beforeEach ->
-    unlink '/tmp/file.pdf'
+    stat('/tmp/file.pdf').then (stats) ->
+      return if !stats.isFile()
+      unlink '/tmp/file.pdf'
+    .catch (err) ->
+      Promise.resolve()
 
   describe 'saveAs()', ->
     it 'will be saved in the specified path', ->
       @wrapper.saveAs('/tmp/file.pdf').then ->
-        fs.stat '/tmp/file.pdf', (err, stats) ->
-          assert.ok err == null
+        stat('/tmp/file.pdf').then (stats) ->
           assert.ok stats != null
 
   describe 'pipe()', ->
@@ -19,8 +22,7 @@ describe 'ResultWrapper', ->
       stream = fs.createWriteStream('/tmp/file.pdf')
       @wrapper.pipe(stream)
 
-      fs.stat '/tmp/file.pdf', (err, stats) ->
-        assert.ok err == null
+      stat('/tmp/file.pdf').then (stats) ->
         assert.ok stats != null
 
   describe 'bufferize()', ->
