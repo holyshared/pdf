@@ -12,19 +12,42 @@ Installation
 Basic usage
 --------------------------
 
+Use the template engine, you can convert content to PDF.
+
 ```js
 import jade from 'template2pdf-jade';
 import exporter from 'template2pdf';
 
-exporter(jade({ /* jade options */ })).render('views/content.jade', { name: 'jade' }).then((result) => {
-  result.toFile('/tmp/content.pdf', () => {
-    //do something
+exporter(jade({ /* jade options */ }))
+  .render('views/content.jade', { name: 'jade' })
+  .then((result) => {
+    return result.saveAs('/tmp/content.pdf');
+  }).then(() => {
+    //successful
   });
-});
+```
+
+Stream
+--------------------------
+
+Using the Stream, you can also chain the output.
+
+```js
+import jade from 'template2pdf-jade';
+import exporter from 'template2pdf';
+import fs from 'fs';
+
+exporter(jade({ /* jade options */ }))
+  .render('views/content.jade', { name: 'jade' })
+  .then((result) => {
+    result.pipe(fs.createWriteStream('/tmp/stream.pdf'));
+  });
 ```
 
 Javascript & Stylesheet
 --------------------------
+
+You can incorporate your own stylesheets or javascript files.
 
 ```js
 import exporter from 'template2pdf';
@@ -39,6 +62,8 @@ exporter(jade())
     content: 'Example content'
   })
   .then((result) => {
-    result.toFile('./report.pdf');
+    return result.saveAs('./report.pdf');
+  }).then(() => {
+    //successful
   });
 ```
