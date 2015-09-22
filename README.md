@@ -13,11 +13,11 @@ Basic usage
 --------------------------
 
 ```js
-var jade = require('template2pdf').jade;
-var exporter = require('template2pdf').default;
+import jade from 'template2pdf-jade';
+import exporter from 'template2pdf';
 
-exporter(jade({ /* jade options */ })).render('views/content.jade', { name: 'jade' }).then(function(result) {
-  result.toFile('/tmp/content.pdf', function() {
+exporter(jade({ /* jade options */ })).render('views/content.jade', { name: 'jade' }).then((result) => {
+  result.toFile('/tmp/content.pdf', () => {
     //do something
   });
 });
@@ -27,8 +27,8 @@ Javascript & Stylesheet
 --------------------------
 
 ```js
-var jade = require('template2pdf').jade;
-var exporter = require('template2pdf').default;
+import jade from 'template2pdf-jade';
+import exporter from 'template2pdf';
 
 exporter(jade())
   .stylesheet('./style.css')
@@ -37,9 +37,9 @@ exporter(jade())
     format: 'A4',
     orientation: 'portrait'
   })
-  .render('views/content.jade', { name: 'jade' }).then(function(result) {
-    result.toFile('/tmp/content.pdf', function() {
-      //do something
+  .render('views/content.jade', { name: 'jade' }).then((result) => {
+    result.toFile('/tmp/content.pdf', () => {
+		//do something
     });
   });
 ```
