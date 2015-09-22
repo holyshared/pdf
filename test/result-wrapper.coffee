@@ -4,6 +4,9 @@ describe 'ResultWrapper', ->
     @result = new PDFResult null, @pdf
     @wrapper = new ResultWrapper @result
 
+  beforeEach ->
+    unlink '/tmp/file.pdf'
+
   describe 'saveAs()', ->
     it 'will be saved in the specified path', ->
       @wrapper.saveAs('/tmp/file.pdf').then ->

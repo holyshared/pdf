@@ -7,3 +7,4 @@ global.fs = require 'fs'
 global.Readable = require('stream').Readable
 global.sinon = require 'sinon'
 global.PDFResult = require '../node_modules/phantom-html2pdf/lib/pdfResult.js'
+global.unlink = Promise.promisify fs.unlink
