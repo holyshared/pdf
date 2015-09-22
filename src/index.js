@@ -29,10 +29,10 @@ export class PDFExpoter {
   _stylesheet: string;
   _layout: PageSizeOptions;
   _forceCleanup: boolean;
-  renderer: Object;
+  _renderer: Object;
 
   constructor(renderer:Object) {
-    this.renderer = renderer;
+    this._renderer = renderer;
     this._javascript = '';
     this._stylesheet = '';
     this._layout = {};
@@ -56,7 +56,7 @@ export class PDFExpoter {
   }
   render(template:string, values:Object): Promise {
     return Promise.bind(this).then(() => {
-      return this.renderer.render(template, values);
+      return this._renderer.render(template, values);
     }).then((content) => {
       return this.renderPDF(content);
     });
