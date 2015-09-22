@@ -32,7 +32,7 @@ export class ResultWrapper {
   constructor(result:PDFResult) {
     this._result = result;
   }
-  saveAs(fileName:string) : Promise {
+  saveAs(fileName:string) : Promise<void> {
     return new Promise((resolve, reject) => {
       try {
         this._result.toFile(fileName, resolve);
@@ -44,6 +44,15 @@ export class ResultWrapper {
   pipe(stream:Writable) : void {
     let readStream = this._result.toStream();
     readStream.pipe(stream);
+  }
+  bufferize() : Promise<Buffer> {
+    return new Promise((resolve, reject) => {
+      try {
+        this._result.toBuffer(resolve);
+      } catch (err) {
+        reject(err);
+      }
+    });
   }
 }
 

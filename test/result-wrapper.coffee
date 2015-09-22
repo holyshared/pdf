@@ -15,10 +15,15 @@ describe 'ResultWrapper', ->
           assert.ok stats != null
 
   describe 'pipe()', ->
-    it 'will be saved in the specified path', ->
+    it 'converted to stream', ->
       stream = fs.createWriteStream('/tmp/file.pdf')
       @wrapper.pipe(stream)
 
       fs.stat '/tmp/file.pdf', (err, stats) ->
         assert.ok err == null
         assert.ok stats != null
+
+  describe 'bufferize()', ->
+    it 'converted to buffer', ->
+      @wrapper.bufferize().then (buffer) ->
+        assert.ok buffer instanceof Buffer
