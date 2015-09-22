@@ -1,8 +1,10 @@
 /* @flow */
 
+import { Writable } from 'stream';
 import _ from 'lodash';
 import Promise from 'bluebird';
 import pdf from 'phantom-html2pdf';
+import PDFResult from '../node_modules/phantom-html2pdf/lib/pdfResult.js';
 
 type PageSizeOptions = {
   format?: string,
@@ -22,6 +24,27 @@ type Html2PDFOptions = {
 
 export default function exporter(renderer: Object): PDFExpoter {
   return new PDFExpoter(renderer);
+}
+
+export class ResultWrapper {
+  _result: PDFResult;
+
+  constructor(result:PDFResult) {
+    this._result = result;
+  }
+  saveAs(fileName:string) : Promise {
+    return new Promise((resolve, reject) => {
+      try {
+        this._result.toFile(fileName, resolve);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+  pipe(stream:Writable) : void {
+    let readStream = this._result.toStream();
+    readStream.pipe(stream);
+  }
 }
 
 export class PDFExpoter {
@@ -73,7 +96,7 @@ export class PDFExpoter {
 
     return new Promise((resolve, reject) => {
       pdf.convert(opts, (result) => {
-        resolve(result);
+        resolve(new ResultWrapper(result));
       });
     });
   }

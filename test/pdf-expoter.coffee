@@ -8,15 +8,14 @@ describe 'PDFExpoter', ->
               return reject(err) if err
               resolve content.toString()
       })
-    it 'returns render content', ->
-      @timeout 3000
-      template = path.resolve(__dirname, 'fixtures/content.html')
-      js = path.resolve(__dirname, 'fixtures/main.js')
-      css = path.resolve(__dirname, 'fixtures/style.css')
+      @template = path.resolve(__dirname, 'fixtures/content.html')
+      @js = path.resolve(__dirname, 'fixtures/main.js')
+      @css = path.resolve(__dirname, 'fixtures/style.css')
 
-      @exporter.stylesheet css
-        .javascript js
+    it 'returns ResultWrapper instance', ->
+      @timeout 3000
+      @exporter.stylesheet @css
+        .javascript @js
         .layout format: 'A4', orientation: 'portrait'
-        .render(template, { title: 'test' }).then (result) ->
-          stream = result.toStream()
-          assert.ok(stream instanceof Readable)
+        .render(@template, { title: 'test' }).then (result) ->
+          assert.ok result instanceof ResultWrapper
