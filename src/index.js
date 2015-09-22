@@ -4,6 +4,22 @@ import _ from 'lodash';
 import Promise from 'bluebird';
 import pdf from 'phantom-html2pdf';
 
+type PageSizeOptions = {
+  format?: string,
+  orientation?: string,
+  width?: string,
+  height?: string,
+  delay?: number
+}
+
+type Html2PDFOptions = {
+  js?: string,
+  css?: string,
+  deleteOnAction?: boolean,
+  pageSize?: PageSizeOptions,
+  html?: string
+}
+
 export default function exporter(renderer: Object): PDFExpoter {
   return new PDFExpoter(renderer);
 }
@@ -11,7 +27,7 @@ export default function exporter(renderer: Object): PDFExpoter {
 export class PDFExpoter {
   _javascript: string;
   _stylesheet: string;
-  _layout: Object;
+  _layout: PageSizeOptions;
   _forceCleanup: boolean;
   renderer: Object;
 
@@ -46,7 +62,7 @@ export class PDFExpoter {
     });
   }
   renderPDF(content: string): Promise {
-    var opts = {
+    var opts:Html2PDFOptions = {
       js: this._javascript,
       css: this._stylesheet,
       deleteOnAction: this._forceCleanup,
