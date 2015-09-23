@@ -1,9 +1,10 @@
-[![Stories in Ready](https://badge.waffle.io/holyshared/template2pdf.png?label=ready&title=Ready)](https://waffle.io/holyshared/template2pdf)
 template2pdf
 ======================
 
 [![Build Status](https://travis-ci.org/holyshared/template2pdf.svg?branch=master)](https://travis-ci.org/holyshared/template2pdf)
 [![Coverage Status](https://coveralls.io/repos/holyshared/template2pdf/badge.svg?branch=master&service=github)](https://coveralls.io/github/holyshared/template2pdf?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/55feb03c601dd9001c00003a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55feb03c601dd9001c00003a)
+[![Stories in Ready](https://badge.waffle.io/holyshared/template2pdf.png?label=ready&title=Ready)](https://waffle.io/holyshared/template2pdf)
 
 Installation
 ----------------------
