@@ -30,7 +30,7 @@
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
     "mocha": "^2.3.2",
-    "mocha-lcov-reporter": "0.0.2",
+    "mocha-lcov-reporter": "^1.0.0",
     "mocha-multi": "^0.7.1",
     "power-assert": "^1.0.1",
     "sinon": "^1.16.1"
